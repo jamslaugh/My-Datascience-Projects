@@ -21,8 +21,16 @@ get_schol_id <- function(){
   id_tmp <- str_extract(links,"[A-Za-z0-9]{12}")
   id_tmp <- id_tmp[!is.na(id_tmp)]
   if(length(id_tmp) > 1){
+    if(nchar(id_tmp[1])!= 12){
+      warning("Seems like the author you have searched is not on scholar. You might have misspelled it")
+    }else{
     return(id_tmp[1])
+    }
   }else{
-    return(id_tmp)
-  }
+    if(nchar(id_tmp) != 12){
+      warning("Seems like the author you have searched is not on scholar. You might have misspelled it")
+    }else{
+      return(id_tmp)
+     }
+   }
 }
